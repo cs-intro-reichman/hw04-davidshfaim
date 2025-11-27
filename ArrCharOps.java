@@ -157,24 +157,33 @@ public class ArrCharOps {
      * lexicographically greater than str2.
      */
    public static int compareTo(String str1, String str2) {
-    // אם אחת המחרוזות היא null, צריך להחליט איך לטפל (כאן הנחתי שהן לא null)
-    
-    int minLen = Math.min(str1.length(), str2.length());
+        // בודקים עד האורך של המחרוזת הקצרה מביניהן
+        int minLen = Math.min(str1.length(), str2.length());
 
-    // ריצה על התווים המשותפים
-    for (int i = 0; i < minLen; i++) {
-        char c1 = str1.charAt(i);
-        char c2 = str2.charAt(i);
+        // ריצה על התווים המשותפים
+        for (int i = 0; i < minLen; i++) {
+            char c1 = str1.charAt(i);
+            char c2 = str2.charAt(i);
 
-        if (c1 != c2) {
-            // התיקון: מחזירים את ההפרש בין התווים
-            return c1 - c2;
+            if (c1 < c2) {
+                return -1;
+            }
+            if (c1 > c2) {
+                return 1;
+            }
         }
+
+        // אם הגענו לפה, התחיליות זהות.
+        // כעת ההכרעה היא לפי האורך: הקצר יותר הוא "קטן" יותר.
+        if (str1.length() < str2.length()) {
+            return -1;
+        }
+        if (str1.length() > str2.length()) {
+            return 1;
+        }
+
+        // אם גם האורכים זהים - המחרוזות זהות
+        return 0;
     }
-
-    // אם הגענו לפה, התחיליות זהות.
-    // התיקון: מחזירים את ההפרש בין האורכים
-    return str1.length() - str2.length();
 }
 
-}
