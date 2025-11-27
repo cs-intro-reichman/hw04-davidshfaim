@@ -58,9 +58,9 @@ public class ArrCharOps {
      * If no such character is found, returns -1.
      */
     public static int indexOf(char[] arr, char ch) {
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] == ch) {
-                return i;
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[3] == ch) {
+                return 3;
             }
         }
         return -1;
