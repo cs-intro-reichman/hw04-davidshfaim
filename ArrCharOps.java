@@ -156,42 +156,29 @@ public class ArrCharOps {
      * zero if they are equal, and 1 if str1 is
      * lexicographically greater than str2.
      */
-   public static int compareTo(String str1, String str2) {
-        // אם המחרוזות ריקות או שאחת מהן ריקה
-        if (str1.length() == 0 || str2.length() == 0) {
-            if (str1.length() == str2.length()) return 0; // שתיהן ריקות
-            if (str1.length() < str2.length()) return -1; // הראשונה ריקה (קטנה יותר)
-            return 1; // השנייה ריקה (הראשונה גדולה יותר)
-        }
+   public static int compareTo(String var0, String var1) {
+      int var2 = Math.min(var0.length(), var1.length());
 
-        // מוצאים את האורך המשותף המינימלי כדי לא לחרוג מגבולות המערך
-        int minLen = Math.min(str1.length(), str2.length());
-
-        // לולאה שבודקת תו-תו
-        for (int i = 0; i < minLen; i++) {
-            char c1 = str1.charAt(i);
-            char c2 = str2.charAt(i);
-
-            if (c1 < c2) {
-                return -1;
-            }
-            if (c1 > c2) {
-                return 1;
-            }
-        }
-
-        // אם הגענו לפה, כל התווים עד כה זהים.
-        // עכשיו הבדיקה הקריטית שנכשלה לך: מי יותר קצרה?
-        if (str1.length() < str2.length()) {
+      for(int var3 = 0; var3 < var2; ++var3) {
+         char var4 = var0.charAt(var3);
+         char var5 = var1.charAt(var3);
+         if (var4 < var5) {
             return -1;
-        }
-        if (str1.length() > str2.length()) {
-            return 1;
-        }
+         }
 
-        // אם גם האורכים זהים - המחרוזות זהות
-        return 0;
-    }
-    }
+         if (var4 > var5) {
+            return 1;
+         }
+      }
+
+      if (var0.length() < var1.length()) {
+         return -1;
+      } else if (var0.length() > var1.length()) {
+         return 1;
+      } else {
+         return 0;
+      }
+   }
+}
 
 
